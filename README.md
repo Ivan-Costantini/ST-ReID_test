@@ -5,7 +5,9 @@ Sorgente originaria ST-ReID: https://github.com/Wanggcong/Spatial-Temporal-Re-id
 Per eseguire test sui dataset seguire la seguente procedura:
   creare una nuova cartella chiamata "raw-dataset" all'interno della cartella contente gli script del programma
   
+  
   1. Scaricare il dataset interessato ed estrarlo nella cartella "raw-dataset"
+  
   
   2. Preparare il dataset all'elaborazione eseguendo lo script "prepare.py" o "prepare_[nome dataset].m" adeguato;
       Lo script "prepare.py" deve essere usato per elaborare i dataset "Market1501" o "DukeMTMC" e dovra essere eseguito chiamando:
@@ -13,6 +15,7 @@ Per eseguire test sui dataset seguire la seguente procedura:
       python prepare.py --Market
       
       Per gli altri script sarà invece sufficiente eseguirli direttamente su matlab
+      
       
   3. Cominciare il training usando il comando:
   
@@ -25,17 +28,20 @@ Per eseguire test sui dataset seguire la seguente procedura:
         il paraemtro "batchsize" può essere cambiato in base alla memoria RAM disponibile al sistema;
           notare che questi ultimi due parametri impattano direttamente sui tempi di addestramento del modello.
           
+          
   4. Estrapolare le feature visuali usando il comando:
   
       python test_st_prid.py --PCB --gpu_ids 0 --name ft_ResNet50_pcb_prid_e --test_dir "F:\Utenti\Ivan\Desktop\Stage\Programmi\Spatial-Temporal-Re-identification-master\dataset\prid2011_rename" --batchsize 8
       
       valgono le note presentante sul comando precedente
       
+      
   5. Calcolare la distribuzione spazio temporale usando il comando:
   
       python gen_st_model_prid.py --name ft_ResNet50_pcb_prid_e --data_dir "F:\Utenti\Ivan\Desktop\Stage\Programmi\Spatial-Temporal-Re-identification-master\dataset\prid2011_rename"
       
       valgono le note presentante sul comando precedente
+      
       
   6. Valutare le performance finali del modello usando il comando:
   

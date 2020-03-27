@@ -9,11 +9,15 @@ Per eseguire test sui dataset seguire la seguente procedura:
   
   2. Preparare il dataset all'elaborazione eseguendo lo script "prepare.py" o "prepare_[nome dataset].m" adeguato;
       Lo script "prepare.py" deve essere usato per elaborare i dataset "Market1501" o "DukeMTMC" e dovra essere eseguito chiamando:
+      
       python prepare.py --Market
+      
       Per gli altri script sarà invece sufficiente eseguirli direttamente su matlab
       
   3. Cominciare il training usando il comando:
+  
       python train_prid.py --PCB --gpu_ids 0 --name ft_ResNet50_pcb_prid_e --erasing_p 0.5 --train_all --data_dir "F:\Utenti\Ivan\Desktop\Stage\Programmi\Spatial-Temporal-Re-identification-master\dataset\prid2011_rename" --batchsize 10
+      
       notare che:
         il parametro "name" può essere modificato scegliendo di assegnare il nome che si preferisce al modello finale, che verrà salvato sotto la cartella "model";
         il parametro "data_dir" deve essere cambiato per indirizzare alla cartella contenente il dataset preparato;
@@ -22,15 +26,21 @@ Per eseguire test sui dataset seguire la seguente procedura:
           notare che questi ultimi due parametri impattano direttamente sui tempi di addestramento del modello.
           
   4. Estrapolare le feature visuali usando il comando:
-      python test_st_prid.py --PCB --gpu_ids 0 --name ft_ResNet50_pcb_prid_e --test_dir "F:\Utenti\Ivan\Desktop\Stage\Programmi\Spatial-Temporal-Re-identification-master\dataset\prid2011_rename" --batchsize 8ù
+  
+      python test_st_prid.py --PCB --gpu_ids 0 --name ft_ResNet50_pcb_prid_e --test_dir "F:\Utenti\Ivan\Desktop\Stage\Programmi\Spatial-Temporal-Re-identification-master\dataset\prid2011_rename" --batchsize 8
+      
       valgono le note presentante sul comando precedente
       
   5. Calcolare la distribuzione spazio temporale usando il comando:
+  
       python gen_st_model_prid.py --name ft_ResNet50_pcb_prid_e --data_dir "F:\Utenti\Ivan\Desktop\Stage\Programmi\Spatial-Temporal-Re-identification-master\dataset\prid2011_rename"
+      
       valgono le note presentante sul comando precedente
       
   6. Valutare le performance finali del modello usando il comando:
+  
       python evaluate_st.py --name ft_ResNet50_pcb_prid_e
+ 
  
 I risultati dell'elaborazione saranno presentati all'interno della cartella, presente sotto la cartella "model", avendo il nome assegnato al parametro "name", in un file matlab chiamato "CMC_duke_two_stream_add5".
 
